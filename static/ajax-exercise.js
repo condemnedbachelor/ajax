@@ -2,8 +2,8 @@
 
 
 // PART 1: SHOW A FORTUNE
-function getFortune(fortune) {
-	$('#fortune-text').html(fortune);
+function getFortune(fortunez) {
+	$('#fortune-text').html(fortunez);
 }
 
 function showFortune(evt) {
@@ -15,19 +15,21 @@ function showFortune(evt) {
 $('#get-fortune-button').on('click', showFortune);
 
 
-// function replaceFortune() {
-//     
-// }
-
 
 // PART 2: SHOW WEATHER
+function getWeather(results) {
+	$('#weather-info').html(results.forecast + ' ' +results.temp);
+	// $('#weather-info').html(results.temp);
+}
 
 function showWeather(evt) {
     evt.preventDefault();
 
-    var url = "/weather?zipcode=" + $("#zipcode-field").val();
+    var url = "/weather.json?zipcode=" + $("#zipcode-field").val();
 
     // TODO: request weather with that URL and show the forecast in #weather-info
+    $.get(url, getWeather)
+    // console.log(getWeather);
 }
 
 $("#weather-form").on('submit', showWeather);
